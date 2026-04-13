@@ -20,355 +20,134 @@
   --parchment:   #ede6d4;
   --ivory:       #faf7f0;
   --bark:        #6b4f35;
-  --bark-light:  #8c6a4a;
   --smoke:       #7a7060;
-  --white:       #fdfcf8;
   --dark:        #121a10;
 }
-
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{
-  font-family:'EB Garamond',Georgia,serif;
-  background:var(--dark);
-  color:var(--dark);
-  overflow-x:hidden;
-}
+body{font-family:'EB Garamond',Georgia,serif;background:var(--dark);color:var(--dark);overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:999;opacity:0.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
 
-/* ── GRAIN ── */
-body::before{
-  content:'';
-  position:fixed;inset:0;pointer-events:none;z-index:999;
-  opacity:0.03;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-/* ── NAV ── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  padding:16px 52px;
-  display:flex;justify-content:space-between;align-items:center;
-  background:linear-gradient(to bottom,rgba(12,18,10,0.95) 0%,transparent 100%);
-  backdrop-filter:blur(6px);
-  transition:background 0.4s;
-}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:16px 52px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(to bottom,rgba(12,18,10,0.95) 0%,transparent 100%);backdrop-filter:blur(6px);transition:background 0.4s;}
 nav.scrolled{background:rgba(18,26,16,0.97);}
 .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
 .nav-logo img{height:42px;width:42px;object-fit:contain;border-radius:50%;border:1px solid rgba(201,168,76,0.3);}
-.nav-logo-txt{
-  font-family:'Cinzel',serif;
-  font-size:0.85rem;color:var(--gold-light);
-  letter-spacing:0.18em;text-transform:uppercase;
-}
+.nav-logo-txt{font-family:'Cinzel',serif;font-size:0.85rem;color:var(--gold-light);letter-spacing:0.18em;text-transform:uppercase;}
 .nav-links{display:flex;gap:28px;list-style:none;align-items:center;}
-.nav-links a{
-  font-family:'EB Garamond',serif;
-  font-size:0.95rem;letter-spacing:0.12em;
-  color:rgba(240,224,168,0.7);text-decoration:none;transition:color 0.3s;
-}
+.nav-links a{font-family:'EB Garamond',serif;font-size:0.95rem;letter-spacing:0.12em;color:rgba(240,224,168,0.7);text-decoration:none;transition:color 0.3s;}
 .nav-links a:hover{color:var(--gold-light);}
-.nav-links a.hl{
-  color:var(--gold);border:1px solid rgba(201,168,76,0.4);
-  padding:5px 16px;transition:background 0.3s;
-}
+.nav-links a.hl{color:var(--gold);border:1px solid rgba(201,168,76,0.4);padding:5px 16px;transition:background 0.3s;}
 .nav-links a.hl:hover{background:rgba(201,168,76,0.12);}
 
-/* ── HERO ── */
-.hero{
-  min-height:100vh;position:relative;
-  display:flex;align-items:center;overflow:hidden;
-  background:#0e1a0c;
-}
-.hero-bg{
-  position:absolute;inset:0;z-index:0;
-  background:
-    radial-gradient(ellipse 70% 80% at 60% 45%,rgba(61,100,56,0.22) 0%,transparent 65%),
-    radial-gradient(ellipse 40% 50% at 15% 70%,rgba(201,168,76,0.08) 0%,transparent 55%),
-    radial-gradient(ellipse 30% 30% at 85% 15%,rgba(46,74,44,0.18) 0%,transparent 50%),
-    repeating-linear-gradient(72deg,transparent 0,transparent 42px,rgba(201,168,76,0.015) 42px,rgba(201,168,76,0.015) 43px),
-    repeating-linear-gradient(162deg,transparent 0,transparent 60px,rgba(61,100,56,0.012) 60px,rgba(61,100,56,0.012) 61px);
-}
-/* Decorative watermarks — typographic */
-.hero-wm{
-  position:absolute;right:-40px;bottom:-60px;
-  font-family:'Playfair Display',serif;
-  font-size:clamp(13rem,28vw,26rem);
-  font-weight:900;font-style:italic;
-  color:rgba(122,158,110,0.055);
-  opacity:1;pointer-events:none;z-index:1;
-  user-select:none;line-height:0.88;
-  white-space:nowrap;letter-spacing:-0.02em;
-}
-.hero-wm2{
-  position:absolute;left:-30px;top:18%;
-  font-family:'Cormorant Infant',serif;
-  font-size:clamp(6rem,13vw,12rem);
-  font-weight:700;font-style:italic;
-  color:rgba(201,168,76,0.04);
-  pointer-events:none;z-index:1;
-  user-select:none;line-height:1;
-  writing-mode:vertical-rl;letter-spacing:0.08em;
-}
-.hero-photos{
-  position:absolute;inset:0;z-index:0;
-  display:grid;grid-template-columns:1.3fr 0.85fr 0.85fr;
-  grid-template-rows:1fr 1fr;gap:3px;
-}
+/* HERO */
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;background:#0e1a0c;}
+.hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 70% 80% at 60% 45%,rgba(61,100,56,0.22) 0%,transparent 65%),radial-gradient(ellipse 40% 50% at 15% 70%,rgba(201,168,76,0.08) 0%,transparent 55%),radial-gradient(ellipse 30% 30% at 85% 15%,rgba(46,74,44,0.18) 0%,transparent 50%),repeating-linear-gradient(72deg,transparent 0,transparent 42px,rgba(201,168,76,0.015) 42px,rgba(201,168,76,0.015) 43px),repeating-linear-gradient(162deg,transparent 0,transparent 60px,rgba(61,100,56,0.012) 60px,rgba(61,100,56,0.012) 61px);}
+
+/* TYPOGRAPHIC WATERMARKS */
+.hero-wm{position:absolute;right:-40px;bottom:-60px;font-family:'Playfair Display',serif;font-size:clamp(13rem,28vw,26rem);font-weight:900;font-style:italic;color:rgba(122,158,110,0.055);pointer-events:none;z-index:1;user-select:none;line-height:0.88;white-space:nowrap;letter-spacing:-0.02em;}
+.hero-wm2{position:absolute;left:-30px;top:18%;font-family:'Cormorant Infant',serif;font-size:clamp(6rem,13vw,12rem);font-weight:700;font-style:italic;color:rgba(201,168,76,0.04);pointer-events:none;z-index:1;user-select:none;line-height:1;writing-mode:vertical-rl;letter-spacing:0.08em;}
+
+.hero-photos{position:absolute;inset:0;z-index:0;display:grid;grid-template-columns:1.3fr 0.85fr 0.85fr;grid-template-rows:1fr 1fr;gap:3px;}
 .hp{overflow:hidden;background:#0e180c;}
 .hp img{width:100%;height:100%;object-fit:cover;opacity:0.45;transition:transform 12s ease;}
 .hp:hover img{transform:scale(1.05);}
 .hp:nth-child(1){grid-row:1/3;}
-.hero-fade{
-  position:absolute;inset:0;z-index:1;
-  background:
-    linear-gradient(to right,rgba(10,16,8,0.97) 0%,rgba(10,16,8,0.72) 46%,rgba(10,16,8,0.22) 100%),
-    linear-gradient(to top,rgba(10,16,8,0.7) 0%,transparent 40%);
-}
-.hero-content{
-  position:relative;z-index:3;
-  padding:0 88px;max-width:780px;
-  animation:riseIn 1.3s cubic-bezier(0.16,1,0.3,1) both;
-}
+.hero-fade{position:absolute;inset:0;z-index:1;background:linear-gradient(to right,rgba(10,16,8,0.97) 0%,rgba(10,16,8,0.72) 46%,rgba(10,16,8,0.22) 100%),linear-gradient(to top,rgba(10,16,8,0.7) 0%,transparent 40%);}
+.hero-content{position:relative;z-index:3;padding:0 88px;max-width:780px;animation:riseIn 1.3s cubic-bezier(0.16,1,0.3,1) both;}
 @keyframes riseIn{from{opacity:0;transform:translateY(50px);}to{opacity:1;transform:translateY(0);}}
-.hero-eyebrow{
-  font-family:'EB Garamond',serif;
-  font-size:0.8rem;letter-spacing:0.5em;text-transform:uppercase;
-  color:var(--sage);margin-bottom:18px;
-  display:flex;align-items:center;gap:14px;
-  animation:riseIn 1.3s 0.1s both;
-}
+.hero-eyebrow{font-family:'EB Garamond',serif;font-size:0.8rem;letter-spacing:0.5em;text-transform:uppercase;color:var(--sage);margin-bottom:18px;display:flex;align-items:center;gap:14px;animation:riseIn 1.3s 0.1s both;}
 .hero-eyebrow::before{content:'';width:36px;height:1px;background:var(--sage);opacity:0.6;}
-.hero-title{
-  font-family:'Cinzel',serif;
-  font-size:clamp(2.8rem,7.5vw,6.5rem);
-  font-weight:700;line-height:0.95;
-  color:var(--cream);margin-bottom:8px;
-  animation:riseIn 1.3s 0.16s both;
-}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(2.8rem,7.5vw,6.5rem);font-weight:700;line-height:0.95;color:var(--cream);margin-bottom:8px;animation:riseIn 1.3s 0.16s both;}
 .hero-title-em{font-style:normal;color:var(--gold-light);display:block;}
-.hero-sub{
-  font-family:'EB Garamond',serif;font-style:italic;
-  font-size:clamp(1rem,1.8vw,1.4rem);
-  color:rgba(240,224,168,0.55);
-  line-height:1.7;max-width:500px;margin:26px 0 42px;
-  animation:riseIn 1.3s 0.22s both;
-}
+.hero-sub{font-family:'EB Garamond',serif;font-style:italic;font-size:clamp(1rem,1.8vw,1.4rem);color:rgba(240,224,168,0.55);line-height:1.7;max-width:500px;margin:26px 0 42px;animation:riseIn 1.3s 0.22s both;}
 .hero-sub strong{color:var(--sage-light);font-style:normal;}
-.hero-ctas{
-  display:flex;gap:13px;flex-wrap:wrap;
-  animation:riseIn 1.3s 0.3s both;
-}
-.btn-forest{
-  display:inline-flex;align-items:center;gap:9px;
-  background:var(--forest-mid);color:var(--gold-pale);
-  font-family:'EB Garamond',serif;
-  font-size:1rem;font-weight:500;
-  letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;
-  padding:14px 34px;border:1px solid rgba(201,168,76,0.3);
-  transition:background 0.3s,border-color 0.3s,letter-spacing 0.3s;
-}
+.hero-ctas{display:flex;gap:13px;flex-wrap:wrap;animation:riseIn 1.3s 0.3s both;}
+.btn-forest{display:inline-flex;align-items:center;gap:9px;background:var(--forest-mid);color:var(--gold-pale);font-family:'EB Garamond',serif;font-size:1rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;padding:14px 34px;border:1px solid rgba(201,168,76,0.3);transition:background 0.3s,border-color 0.3s,letter-spacing 0.3s;}
 .btn-forest:hover{background:var(--forest-light);border-color:rgba(201,168,76,0.6);letter-spacing:0.24em;}
-.btn-gold{
-  display:inline-flex;align-items:center;gap:9px;
-  background:var(--gold);color:var(--dark);
-  font-family:'EB Garamond',serif;
-  font-size:1rem;font-weight:500;
-  letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;
-  padding:14px 34px;
-  transition:background 0.3s,letter-spacing 0.3s;
-}
+.btn-gold{display:inline-flex;align-items:center;gap:9px;background:var(--gold);color:var(--dark);font-family:'EB Garamond',serif;font-size:1rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;padding:14px 34px;transition:background 0.3s,letter-spacing 0.3s;}
 .btn-gold:hover{background:var(--gold-light);letter-spacing:0.24em;}
-.btn-ghost-g{
-  display:inline-flex;align-items:center;gap:9px;
-  border:1px solid rgba(201,168,76,0.35);color:var(--gold);
-  font-family:'EB Garamond',serif;
-  font-size:1rem;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;
-  padding:13px 30px;transition:background 0.3s,border-color 0.3s;
-}
+.btn-ghost-g{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(201,168,76,0.35);color:var(--gold);font-family:'EB Garamond',serif;font-size:1rem;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;padding:13px 30px;transition:background 0.3s,border-color 0.3s;}
 .btn-ghost-g:hover{background:rgba(201,168,76,0.09);border-color:var(--gold);}
-.hero-scroll{
-  position:absolute;bottom:38px;right:54px;z-index:3;
-  writing-mode:vertical-rl;
-  font-family:'EB Garamond',serif;
-  font-size:0.65rem;letter-spacing:0.4em;text-transform:uppercase;
-  color:rgba(201,168,76,0.35);
-  display:flex;flex-direction:column;align-items:center;gap:8px;
-}
-.hero-scroll::after{
-  content:'';width:1px;height:52px;
-  background:linear-gradient(to bottom,rgba(201,168,76,0.35),transparent);
-  animation:pulseDown 2.5s ease infinite;
-}
+.hero-scroll{position:absolute;bottom:38px;right:54px;z-index:3;writing-mode:vertical-rl;font-family:'EB Garamond',serif;font-size:0.65rem;letter-spacing:0.4em;text-transform:uppercase;color:rgba(201,168,76,0.35);display:flex;flex-direction:column;align-items:center;gap:8px;}
+.hero-scroll::after{content:'';width:1px;height:52px;background:linear-gradient(to bottom,rgba(201,168,76,0.35),transparent);animation:pulseDown 2.5s ease infinite;}
 @keyframes pulseDown{0%,100%{transform:scaleY(1);opacity:0.35;}50%{transform:scaleY(1.35);opacity:0.9;}}
 
-/* ── USP STRIP ── */
+/* USP STRIP */
 .usp-strip{background:var(--forest-deep);display:flex;flex-wrap:wrap;border-top:1px solid rgba(201,168,76,0.08);}
-.usp-pill{
-  flex:1;min-width:190px;padding:22px 28px;
-  border-right:1px solid rgba(201,168,76,0.07);
-  display:flex;align-items:center;gap:12px;transition:background 0.3s;
-}
+.usp-pill{flex:1;min-width:190px;padding:22px 28px;border-right:1px solid rgba(201,168,76,0.07);display:flex;align-items:center;gap:12px;transition:background 0.3s;}
 .usp-pill:last-child{border-right:none;}
 .usp-pill:hover{background:rgba(201,168,76,0.05);}
 .usp-icon{font-size:1.6rem;flex-shrink:0;}
 .usp-txt strong{display:block;color:var(--gold-pale);font-family:'Cinzel',serif;font-size:0.8rem;letter-spacing:0.06em;}
 .usp-txt span{color:rgba(168,196,154,0.6);font-family:'EB Garamond',serif;font-size:0.9rem;}
 
-/* ── SECTION HELPERS ── */
+/* HELPERS */
 .lbl-gold{font-family:'EB Garamond',serif;font-size:0.78rem;letter-spacing:0.48em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
-.lbl-sage{font-family:'EB Garamond',serif;font-size:0.78rem;letter-spacing:0.48em;text-transform:uppercase;color:var(--sage);margin-bottom:12px;}
 .ttl-dark{font-family:'Cinzel',serif;font-size:clamp(1.8rem,3.8vw,2.9rem);color:var(--dark);margin-bottom:12px;line-height:1.1;}
 .ttl-dark em{font-style:italic;font-family:'Sorts Mill Goudy',serif;color:var(--bark);}
 .ttl-light{font-family:'Cinzel',serif;font-size:clamp(1.8rem,3.8vw,2.9rem);color:var(--cream);margin-bottom:12px;line-height:1.1;}
 .ttl-light em{font-style:italic;font-family:'Sorts Mill Goudy',serif;color:var(--gold-light);}
 .sub-txt{font-family:'EB Garamond',serif;font-size:1.15rem;color:var(--smoke);max-width:520px;line-height:1.75;margin-bottom:50px;}
 .divider{width:44px;height:2px;background:var(--gold);margin:14px 0 26px;}
-.divider-sage{width:44px;height:2px;background:var(--sage);margin:14px 0 26px;}
 
-/* ── ABOUT / FEATURES ── */
+/* ABOUT */
 .about{background:var(--ivory);padding:100px 60px;position:relative;overflow:hidden;}
-.about::after{
-  content:'Odmor';
-  position:absolute;right:-30px;bottom:-40px;
-  font-family:'Playfair Display',serif;
-  font-size:clamp(9rem,18vw,17rem);
-  font-weight:900;font-style:italic;
-  color:rgba(107,79,53,0.055);
-  pointer-events:none;line-height:1;
-  white-space:nowrap;letter-spacing:-0.02em;
-}
+.about::after{content:'Odmor';position:absolute;right:-30px;bottom:-40px;font-family:'Playfair Display',serif;font-size:clamp(9rem,18vw,17rem);font-weight:900;font-style:italic;color:rgba(107,79,53,0.055);pointer-events:none;line-height:1;white-space:nowrap;letter-spacing:-0.02em;}
 .about-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
 .about-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:10px;}
-.about-card{
-  background:var(--cream);padding:32px 24px;
-  border-bottom:3px solid transparent;
-  transition:border-bottom-color 0.3s,background 0.3s,transform 0.3s;
-}
+.about-card{background:var(--cream);padding:32px 24px;border-bottom:3px solid transparent;transition:border-bottom-color 0.3s,background 0.3s,transform 0.3s;}
 .about-card:hover{border-bottom-color:var(--gold);background:#fff;transform:translateY(-4px);}
 .ac-icon{font-size:2rem;margin-bottom:12px;display:block;}
 .ac-name{font-family:'Cinzel',serif;font-size:0.88rem;color:var(--dark);margin-bottom:7px;letter-spacing:0.04em;}
 .ac-desc{font-family:'EB Garamond',serif;font-size:0.98rem;color:var(--smoke);line-height:1.65;}
 
-/* ── AMENITIES ── */
+/* AMENITIES */
 .amenities{background:var(--forest-deep);padding:100px 60px;position:relative;overflow:hidden;}
-.amenities::before{
-  content:'Vila';
-  position:absolute;left:-30px;top:50%;transform:translateY(-50%) rotate(-90deg);
-  font-family:'Playfair Display',serif;
-  font-size:clamp(10rem,19vw,18rem);font-weight:900;font-style:italic;
-  color:rgba(201,168,76,0.042);white-space:nowrap;
-  pointer-events:none;line-height:1;letter-spacing:-0.02em;
-}
+.amenities::before{content:'Vila';position:absolute;left:-30px;top:50%;transform:translateY(-50%) rotate(-90deg);font-family:'Playfair Display',serif;font-size:clamp(10rem,19vw,18rem);font-weight:900;font-style:italic;color:rgba(201,168,76,0.042);white-space:nowrap;pointer-events:none;line-height:1;letter-spacing:-0.02em;}
 .am-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;position:relative;z-index:1;}
 .am-desc{font-family:'EB Garamond',serif;font-size:1.12rem;color:rgba(240,230,200,0.55);line-height:1.85;margin-bottom:30px;}
-.am-highlight{
-  display:inline-flex;align-items:center;gap:16px;
-  background:rgba(201,168,76,0.06);
-  border:1px solid rgba(201,168,76,0.14);
-  padding:14px 26px;margin-bottom:36px;
-}
+.am-highlight{display:inline-flex;align-items:center;gap:16px;background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.14);padding:14px 26px;margin-bottom:36px;}
 .am-num{font-family:'Cinzel',serif;font-size:2.2rem;color:var(--gold);line-height:1;}
 .am-num-txt{font-family:'EB Garamond',serif;font-size:0.85rem;color:var(--cream);letter-spacing:0.06em;line-height:1.4;}
 .am-num-txt strong{display:block;color:var(--gold-light);}
 .am-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
-.am-card{
-  background:rgba(255,255,255,0.02);border:1px solid rgba(201,168,76,0.05);
-  padding:24px 20px;border-left:3px solid transparent;
-  transition:border-left-color 0.3s,background 0.3s;
-}
+.am-card{background:rgba(255,255,255,0.02);border:1px solid rgba(201,168,76,0.05);padding:24px 20px;border-left:3px solid transparent;transition:border-left-color 0.3s,background 0.3s;}
 .am-card:hover{border-left-color:var(--gold);background:rgba(201,168,76,0.04);}
 .am-card-icon{font-size:1.6rem;margin-bottom:8px;display:block;}
 .am-card-name{font-family:'Cinzel',serif;font-size:0.84rem;color:var(--cream);margin-bottom:4px;letter-spacing:0.04em;}
 .am-card-desc{font-family:'EB Garamond',serif;font-size:0.9rem;color:rgba(170,160,140,0.65);line-height:1.55;}
 
-/* ── GALLERY ── */
+/* GALLERY */
 .gallery{background:var(--parchment);padding:90px 60px;text-align:center;position:relative;overflow:hidden;}
-.gallery::before{
-  content:'Galerija';
-  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-  font-family:'Playfair Display',serif;
-  font-size:clamp(8rem,18vw,17rem);
-  font-weight:900;font-style:italic;
-  color:rgba(107,79,53,0.04);
-  pointer-events:none;white-space:nowrap;letter-spacing:-0.02em;line-height:1;
-  z-index:0;
-}
-.gallery-inner{max-width:1240px;margin:0 auto;}
-
-.photo-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  grid-auto-rows:220px;
-  gap:5px;
-  margin-top:44px;
-  text-align:left;
-}
-.pc{
-  overflow:hidden;position:relative;cursor:zoom-in;
-  background:rgba(30,44,28,0.12);
-}
+.gallery::before{content:'Galerija';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Playfair Display',serif;font-size:clamp(8rem,18vw,17rem);font-weight:900;font-style:italic;color:rgba(107,79,53,0.04);pointer-events:none;white-space:nowrap;letter-spacing:-0.02em;line-height:1;z-index:0;}
+.gallery-inner{max-width:1240px;margin:0 auto;position:relative;z-index:1;}
+.photo-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:5px;margin-top:44px;text-align:left;}
+.pc{overflow:hidden;position:relative;cursor:zoom-in;background:rgba(30,44,28,0.12);}
 .pc img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease,filter 0.4s ease;}
-.pc:hover img{transform:scale(1.06);filter:brightness(0.85);}
-.pc-zoom{
-  position:absolute;inset:0;
-  display:flex;align-items:center;justify-content:center;
-  opacity:0;transition:opacity 0.3s;
-  background:rgba(18,26,16,0.35);
-}
+.pc:hover img{transform:scale(1.06);filter:brightness(0.82);}
+.pc-zoom{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s;background:rgba(18,26,16,0.32);pointer-events:none;}
 .pc:hover .pc-zoom{opacity:1;}
-.pc-zoom::after{
-  content:'⊕';font-size:2.2rem;color:rgba(240,224,168,0.9);
-  text-shadow:0 2px 12px rgba(0,0,0,0.5);
-}
-/* wide/tall cells */
+.pc-zoom::after{content:'\2295';font-size:2.4rem;color:rgba(240,224,168,0.92);text-shadow:0 2px 14px rgba(0,0,0,0.6);}
 .pc-wide{grid-column:span 2;}
 .pc-tall{grid-row:span 2;}
 
-/* ── LIGHTBOX ── */
-.lightbox{
-  position:fixed;inset:0;z-index:500;
-  background:rgba(8,12,7,0.96);
-  display:none;align-items:center;justify-content:center;
-  backdrop-filter:blur(12px);
-}
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;z-index:500;background:rgba(6,10,5,0.97);display:none;align-items:center;justify-content:center;backdrop-filter:blur(16px);}
 .lightbox.open{display:flex;}
-.lb-img-wrap{position:relative;max-width:90vw;max-height:90vh;display:flex;align-items:center;justify-content:center;}
-.lb-img-wrap img{max-width:90vw;max-height:90vh;object-fit:contain;box-shadow:0 30px 80px rgba(0,0,0,0.8);}
-.lb-close{
-  position:absolute;top:18px;right:22px;
-  font-size:1.8rem;color:rgba(240,224,168,0.7);
-  cursor:pointer;z-index:510;
-  background:none;border:none;
-  transition:color 0.2s,transform 0.2s;
-  line-height:1;
-}
+.lb-img-wrap{display:flex;align-items:center;justify-content:center;max-width:90vw;max-height:90vh;}
+.lb-img-wrap img{max-width:90vw;max-height:90vh;width:auto;height:auto;object-fit:contain;box-shadow:0 32px 90px rgba(0,0,0,0.85);display:block;}
+.lb-close{position:fixed;top:20px;right:26px;font-size:2rem;color:rgba(240,224,168,0.75);cursor:pointer;z-index:510;background:none;border:none;transition:color 0.2s,transform 0.2s;line-height:1;padding:6px;}
 .lb-close:hover{color:var(--gold-light);transform:scale(1.15);}
-.lb-prev,.lb-next{
-  position:fixed;top:50%;transform:translateY(-50%);
-  font-size:2.4rem;color:rgba(240,224,168,0.55);
-  cursor:pointer;background:none;border:none;
-  padding:18px;transition:color 0.2s;z-index:510;
-}
-.lb-prev{left:16px;}
-.lb-next{right:16px;}
+.lb-prev,.lb-next{position:fixed;top:50%;transform:translateY(-50%);font-size:3rem;color:rgba(240,224,168,0.5);cursor:pointer;background:none;border:none;padding:20px 14px;transition:color 0.2s;z-index:510;}
+.lb-prev{left:8px;}
+.lb-next{right:8px;}
 .lb-prev:hover,.lb-next:hover{color:var(--gold-light);}
-.lb-counter{
-  position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
-  font-family:'EB Garamond',serif;font-size:0.85rem;letter-spacing:0.3em;
-  color:rgba(201,168,76,0.5);z-index:510;
-}
+.lb-counter{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);font-family:'EB Garamond',serif;font-size:0.85rem;letter-spacing:0.38em;color:rgba(201,168,76,0.45);z-index:510;}
 
-/* ── ACTIVITIES ── */
+/* ACTIVITIES */
 .activities{background:var(--forest-mid);padding:90px 60px;position:relative;overflow:hidden;}
-.activities::after{
-  content:'Priroda';
-  position:absolute;right:-30px;bottom:-40px;
-  font-family:'Playfair Display',serif;
-  font-size:clamp(9rem,20vw,18rem);
-  font-weight:900;font-style:italic;
-  color:rgba(201,168,76,0.05);
-  pointer-events:none;white-space:nowrap;letter-spacing:-0.02em;line-height:1;
-}
+.activities::after{content:'Priroda';position:absolute;right:-30px;bottom:-40px;font-family:'Playfair Display',serif;font-size:clamp(9rem,20vw,18rem);font-weight:900;font-style:italic;color:rgba(201,168,76,0.05);pointer-events:none;white-space:nowrap;letter-spacing:-0.02em;line-height:1;}
 .activities::before{content:'';position:absolute;top:-70px;right:-70px;width:380px;height:380px;border-radius:50%;border:1px solid rgba(201,168,76,0.07);background:radial-gradient(circle,transparent 60%,rgba(201,168,76,0.04) 100%);}
 .act-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
 .act-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(201,168,76,0.08);margin-top:48px;}
@@ -378,7 +157,7 @@ nav.scrolled{background:rgba(18,26,16,0.97);}
 .act-name{font-family:'Cinzel',serif;font-size:0.92rem;color:var(--cream);margin-bottom:7px;letter-spacing:0.04em;}
 .act-desc{font-family:'EB Garamond',serif;font-size:0.95rem;color:rgba(168,196,154,0.55);line-height:1.6;}
 
-/* ── NEARBY ── */
+/* NEARBY */
 .nearby{background:var(--cream);padding:84px 60px;}
 .nearby-inner{max-width:1200px;margin:0 auto;text-align:center;}
 .nearby-body{font-family:'EB Garamond',serif;font-size:1.12rem;color:var(--smoke);max-width:520px;margin:0 auto 46px;line-height:1.7;}
@@ -390,7 +169,7 @@ nav.scrolled{background:rgba(18,26,16,0.97);}
 .ni-name{font-family:'Cinzel',serif;font-size:0.82rem;color:var(--dark);margin-bottom:5px;letter-spacing:0.04em;}
 .ni-dist{font-family:'EB Garamond',serif;font-size:0.88rem;letter-spacing:0.1em;color:var(--bark);}
 
-/* ── REVIEWS ── */
+/* REVIEWS */
 .reviews{background:var(--parchment);padding:88px 60px;}
 .rev-inner{max-width:1200px;margin:0 auto;}
 .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:46px;}
@@ -401,132 +180,71 @@ nav.scrolled{background:rgba(18,26,16,0.97);}
 .rev-stars{color:var(--gold);font-size:0.85rem;margin-bottom:7px;letter-spacing:3px;}
 .rev-author{font-family:'EB Garamond',serif;font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--dark);}
 
-/* ── CALENDAR / RESERVATION ── */
+/* RESERVATION */
 .reservation{background:var(--forest-deep);padding:100px 60px;position:relative;overflow:hidden;}
-.reservation::after{
-  content:'Rezervacija';
-  position:absolute;right:-40px;bottom:-30px;
-  font-family:'Playfair Display',serif;
-  font-size:clamp(7rem,15vw,14rem);
-  font-weight:900;font-style:italic;
-  color:rgba(122,158,110,0.06);
-  pointer-events:none;line-height:1;
-  white-space:nowrap;letter-spacing:-0.02em;
-}
+.reservation::after{content:'Rezervacija';position:absolute;right:-40px;bottom:-30px;font-family:'Playfair Display',serif;font-size:clamp(7rem,15vw,14rem);font-weight:900;font-style:italic;color:rgba(122,158,110,0.06);pointer-events:none;line-height:1;white-space:nowrap;letter-spacing:-0.02em;}
 .res-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.15fr;gap:70px;align-items:start;position:relative;z-index:1;}
 .res-info-desc{font-family:'EB Garamond',serif;font-size:1.1rem;color:rgba(220,210,185,0.55);line-height:1.85;margin-bottom:28px;}
-.res-bullets{list-style:none;display:flex;flex-direction:column;gap:0;}
-.res-bullet{
-  display:flex;gap:14px;align-items:flex-start;
-  padding:17px 0;border-bottom:1px solid rgba(201,168,76,0.06);
-}
+.res-bullets{list-style:none;display:flex;flex-direction:column;}
+.res-bullet{display:flex;gap:14px;align-items:flex-start;padding:17px 0;border-bottom:1px solid rgba(201,168,76,0.06);}
 .res-bullet:first-child{padding-top:0;}
-.res-bullet-chk{
-  width:24px;height:24px;flex-shrink:0;margin-top:3px;
-  border:1px solid var(--sage);display:flex;align-items:center;justify-content:center;
-  color:var(--sage);font-size:0.75rem;
-}
+.res-bullet-chk{width:24px;height:24px;flex-shrink:0;margin-top:3px;border:1px solid var(--sage);display:flex;align-items:center;justify-content:center;color:var(--sage);font-size:0.75rem;}
 .res-bullet-txt{font-family:'EB Garamond',serif;font-size:1rem;color:rgba(220,210,185,0.62);line-height:1.5;}
 .res-bullet-txt strong{color:var(--cream);display:block;margin-bottom:2px;}
-
-/* Calendar Form */
 .cal-box{background:rgba(255,255,255,0.025);border:1px solid rgba(201,168,76,0.1);padding:40px 36px;}
 .cal-box h3{font-family:'Cinzel',serif;font-size:1.5rem;color:var(--cream);margin-bottom:6px;letter-spacing:0.04em;}
 .cal-box h3 em{font-style:italic;font-family:'Sorts Mill Goudy',serif;color:var(--gold-light);}
-.cal-box p{font-family:'EB Garamond',serif;font-size:0.95rem;color:var(--smoke);margin-bottom:28px;line-height:1.6;}
-
-/* Mini Calendar */
+.cal-box > p{font-family:'EB Garamond',serif;font-size:0.95rem;color:var(--smoke);margin-bottom:28px;line-height:1.6;}
 .cal-widget{margin-bottom:24px;}
 .cal-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
 .cal-month{font-family:'Cinzel',serif;font-size:0.95rem;color:var(--gold-light);letter-spacing:0.1em;}
-.cal-arrow{
-  background:none;border:1px solid rgba(201,168,76,0.25);color:var(--gold);
-  padding:4px 10px;cursor:pointer;font-size:1rem;transition:background 0.2s;
-}
+.cal-arrow{background:none;border:1px solid rgba(201,168,76,0.25);color:var(--gold);padding:4px 10px;cursor:pointer;font-size:1rem;transition:background 0.2s;}
 .cal-arrow:hover{background:rgba(201,168,76,0.1);}
 .cal-days-hdr{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:4px;}
 .cal-day-hdr{font-family:'Cinzel',serif;font-size:0.63rem;text-align:center;color:rgba(201,168,76,0.45);letter-spacing:0.1em;padding:4px 0;}
 .cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;}
-.cal-day{
-  aspect-ratio:1;display:flex;align-items:center;justify-content:center;
-  font-family:'EB Garamond',serif;font-size:0.9rem;color:rgba(220,210,185,0.55);
-  cursor:pointer;border:1px solid transparent;transition:all 0.2s;
-  border-radius:2px;
-}
+.cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:0.9rem;color:rgba(220,210,185,0.55);cursor:pointer;border:1px solid transparent;transition:all 0.2s;border-radius:2px;}
 .cal-day:hover:not(.cal-day-empty):not(.cal-day-past){background:rgba(201,168,76,0.12);color:var(--gold-light);}
 .cal-day-empty{cursor:default;}
 .cal-day-past{color:rgba(122,110,95,0.25);cursor:not-allowed;}
 .cal-day-today{border-color:rgba(201,168,76,0.35);color:var(--gold);}
 .cal-day-selected{background:var(--gold)!important;color:var(--dark)!important;font-weight:600;}
 .cal-day-in-range{background:rgba(201,168,76,0.12);color:var(--gold-pale);}
-
-/* Form fields */
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
 .form-field{margin-bottom:12px;}
-.form-field label{
-  display:block;font-family:'EB Garamond',serif;
-  font-size:0.72rem;letter-spacing:0.32em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:6px;
-}
-.form-field input,.form-field select,.form-field textarea{
-  width:100%;background:rgba(255,255,255,0.04);
-  border:1px solid rgba(201,168,76,0.18);
-  color:var(--cream);font-family:'EB Garamond',serif;font-size:0.97rem;
-  padding:10px 14px;outline:none;transition:border-color 0.3s;
-}
+.form-field label{display:block;font-family:'EB Garamond',serif;font-size:0.72rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.form-field input,.form-field select,.form-field textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(201,168,76,0.18);color:var(--cream);font-family:'EB Garamond',serif;font-size:0.97rem;padding:10px 14px;outline:none;transition:border-color 0.3s;}
 .form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:rgba(201,168,76,0.5);}
 .form-field select{cursor:pointer;}
 .form-field select option{background:#1c2b1a;color:var(--cream);}
 .form-field textarea{resize:vertical;min-height:80px;}
-.date-display{
-  display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;
-}
-.date-chip{
-  background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.15);
-  padding:10px 14px;
-}
+.date-display{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+.date-chip{background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.15);padding:10px 14px;}
 .date-chip-lbl{font-family:'EB Garamond',serif;font-size:0.68rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:3px;}
 .date-chip-val{font-family:'EB Garamond',serif;font-size:1rem;color:var(--cream);}
-.btn-reserve{
-  display:block;width:100%;background:var(--forest-light);color:var(--gold-pale);
-  font-family:'Cinzel',serif;font-size:0.82rem;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;
-  padding:16px 24px;text-align:center;margin-bottom:10px;cursor:pointer;
-  border:1px solid rgba(201,168,76,0.2);
-  transition:background 0.3s,border-color 0.3s;
-}
+.btn-reserve{display:block;width:100%;background:var(--forest-light);color:var(--gold-pale);font-family:'Cinzel',serif;font-size:0.82rem;letter-spacing:0.22em;text-transform:uppercase;padding:16px 24px;text-align:center;margin-bottom:10px;cursor:pointer;border:1px solid rgba(201,168,76,0.2);transition:background 0.3s,border-color 0.3s;}
 .btn-reserve:hover{background:var(--forest-mid);border-color:rgba(201,168,76,0.45);}
 .form-note{margin-top:14px;font-family:'EB Garamond',serif;font-size:0.82rem;color:rgba(122,110,95,0.5);text-align:center;font-style:italic;}
-
-/* Success message */
 .form-success{display:none;text-align:center;padding:30px 20px;}
 .form-success .success-icon{font-size:3rem;margin-bottom:14px;display:block;}
 .form-success h4{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--cream);margin-bottom:10px;}
 .form-success p{font-family:'EB Garamond',serif;font-size:1rem;color:var(--smoke);line-height:1.6;}
 
-/* ── MAP ── */
+/* MAP */
 .map-sec{background:var(--dark);padding:84px 60px;}
 .map-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:50px;align-items:start;}
 .map-desc{font-family:'EB Garamond',serif;font-size:1.08rem;color:var(--smoke);line-height:1.8;margin-bottom:28px;}
 .map-addr{background:rgba(255,255,255,0.02);border:1px solid rgba(201,168,76,0.08);padding:20px 24px;margin-bottom:20px;font-family:'EB Garamond',serif;font-size:1rem;color:var(--cream);line-height:1.8;}
-.map-addr strong{display:block;font-size:0.68rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);margin-bottom:7px;font-family:'EB Garamond',serif;}
+.map-addr strong{display:block;font-size:0.68rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);margin-bottom:7px;}
 .btn-dir{display:block;background:var(--forest-mid);color:var(--gold-pale);font-family:'EB Garamond',serif;font-size:0.9rem;letter-spacing:0.2em;text-transform:uppercase;text-decoration:none;padding:13px 24px;text-align:center;border:1px solid rgba(201,168,76,0.18);transition:background 0.3s;}
 .btn-dir:hover{background:var(--forest-light);}
 .map-embed{border:1px solid rgba(201,168,76,0.07);overflow:hidden;}
 .map-embed iframe{display:block;width:100%;height:380px;border:none;filter:grayscale(25%) sepia(18%);transition:filter 0.4s;}
 .map-embed:hover iframe{filter:none;}
 
-/* ── CONTACT ── */
+/* CONTACT */
 .contact{background:var(--forest-deep);padding:90px 60px;position:relative;overflow:hidden;}
-.contact::after{
-  content:'Breg';
-  position:absolute;bottom:-50px;right:-20px;
-  font-family:'Playfair Display',serif;
-  font-size:clamp(11rem,22vw,20rem);
-  font-weight:900;font-style:italic;
-  color:rgba(201,168,76,0.042);
-  line-height:1;pointer-events:none;
-  white-space:nowrap;letter-spacing:-0.03em;
-}
+.contact::after{content:'Breg';position:absolute;bottom:-50px;right:-20px;font-family:'Playfair Display',serif;font-size:clamp(11rem,22vw,20rem);font-weight:900;font-style:italic;color:rgba(201,168,76,0.042);line-height:1;pointer-events:none;white-space:nowrap;letter-spacing:-0.03em;}
 .contact-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;position:relative;z-index:1;}
 .contact-body{font-family:'EB Garamond',serif;font-size:1.08rem;color:rgba(190,180,155,0.55);line-height:1.85;margin-bottom:40px;}
 .ci-list{list-style:none;display:flex;flex-direction:column;}
@@ -540,9 +258,6 @@ nav.scrolled{background:rgba(18,26,16,0.97);}
 .msg-row{display:flex;gap:7px;margin-top:6px;flex-wrap:wrap;}
 .msg-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.03);border:1px solid rgba(201,168,76,0.13);padding:4px 11px;font-family:'EB Garamond',serif;font-size:0.78rem;letter-spacing:0.1em;color:rgba(201,168,76,0.6);text-decoration:none;transition:all 0.3s;}
 .msg-badge:hover{border-color:var(--gold);color:var(--gold-light);}
-.soc-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;}
-.soc-link{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.02);border:1px solid rgba(201,168,76,0.08);padding:5px 13px;font-family:'EB Garamond',serif;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(201,168,76,0.5);text-decoration:none;transition:all 0.3s;}
-.soc-link:hover{border-color:var(--gold);color:var(--gold-light);background:rgba(201,168,76,0.05);}
 .bk-box{background:rgba(255,255,255,0.02);border:1px solid rgba(201,168,76,0.09);padding:40px 38px;}
 .bk-box h3{font-family:'Cinzel',serif;font-size:1.5rem;color:var(--cream);margin-bottom:7px;}
 .bk-box h3 em{font-style:italic;font-family:'Sorts Mill Goudy',serif;color:var(--gold-light);}
@@ -555,7 +270,7 @@ nav.scrolled{background:rgba(18,26,16,0.97);}
 .btn-bk-ghost:hover{background:rgba(201,168,76,0.07);color:var(--gold);}
 .bk-note{margin-top:14px;font-family:'EB Garamond',serif;font-size:0.8rem;color:rgba(122,110,95,0.45);text-align:center;font-style:italic;}
 
-/* ── FOOTER ── */
+/* FOOTER */
 footer{background:#0a0f09;padding:32px 52px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(201,168,76,0.05);flex-wrap:wrap;gap:12px;}
 .f-logo-area{display:flex;align-items:center;gap:10px;}
 .f-logo-area img{height:32px;width:32px;object-fit:contain;border-radius:50%;opacity:0.6;}
@@ -565,7 +280,7 @@ footer{background:#0a0f09;padding:32px 52px;display:flex;justify-content:space-b
 .f-soc a:hover{color:rgba(201,168,76,0.55);}
 .f-copy{font-family:'EB Garamond',serif;font-size:0.78rem;color:rgba(122,110,95,0.3);}
 
-/* ── RESPONSIVE ── */
+/* RESPONSIVE */
 @media(max-width:1050px){
   nav{padding:14px 20px;}
   .nav-links{display:none;}
@@ -603,7 +318,7 @@ footer{background:#0a0f09;padding:32px 52px;display:flex;justify-content:space-b
   <ul class="nav-links">
     <li><a href="#about">Vila</a></li>
     <li><a href="#gallery">Galerija</a></li>
-    <li><a href="#activities">Sadržaj</a></li>
+    <li><a href="#activities">Sadr&#382;aj</a></li>
     <li><a href="#nearby">Okolina</a></li>
     <li><a href="#reservation" class="hl">Rezervacija</a></li>
   </ul>
@@ -613,7 +328,7 @@ footer{background:#0a0f09;padding:32px 52px;display:flex;justify-content:space-b
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-wm">Kraljev</div>
-  <div class="hero-wm2">Fruška Gora</div>
+  <div class="hero-wm2">Fru&#353;ka Gora</div>
   <div class="hero-photos">
     <div class="hp"><img src="20260404_124254.jpg" alt="Vila Kraljev Breg"></div>
     <div class="hp"><img src="20260404_124535.jpg" alt="Vila Kraljev Breg"></div>
@@ -623,18 +338,18 @@ footer{background:#0a0f09;padding:32px 52px;display:flex;justify-content:space-b
   </div>
   <div class="hero-fade"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Fruška Gora · Banstol · Vojvodina</p>
+    <p class="hero-eyebrow">Fru&#353;ka Gora &middot; Banstol &middot; Vojvodina</p>
     <h1 class="hero-title">
       Luksuzni Beg<br>
       <span class="hero-title-em">u Prirodu.</span>
     </h1>
     <p class="hero-sub">
-      Skriveni kutak okružen šumom na <strong>25 minuta od Novog Sada</strong>, u najlepšem delu Fruške gore. Do 12 odraslih, spa centar, bazen, padel, biljar i tišina koja leči.
+      Skriveni kutak okru&#382;en &#353;umom na <strong>25 minuta od Novog Sada</strong>, u najlep&#353;em delu Fru&#353;ke gore. Do 12 odraslih, spa centar, bazen, padel, bilijar i ti&#353;ina koja le&#269;i.
     </p>
     <div class="hero-ctas">
-      <a href="#reservation" class="btn-gold">📅 Rezervišite Termin</a>
-      <a href="tel:+381604648565" class="btn-forest">📞 Pozovite Nas</a>
-      <a href="https://wa.me/381604648565" target="_blank" class="btn-ghost-g">💬 WhatsApp</a>
+      <a href="#reservation" class="btn-gold">&#128197; Rezervi&#353;ite Termin</a>
+      <a href="tel:+381604648565" class="btn-forest">&#128222; Pozovite Nas</a>
+      <a href="https://wa.me/381604648565" target="_blank" class="btn-ghost-g">&#128172; WhatsApp</a>
     </div>
   </div>
   <span class="hero-scroll">Otkrijte</span>
@@ -642,28 +357,28 @@ footer{background:#0a0f09;padding:32px 52px;display:flex;justify-content:space-b
 
 <!-- USP STRIP -->
 <div class="usp-strip">
-  <div class="usp-pill"><span class="usp-icon">👨‍👩‍👧‍👦</span><div class="usp-txt"><strong>Do 12 Gostiju</strong><span>Idealno za porodice i društva</span></div></div>
-  <div class="usp-pill"><span class="usp-icon">🌲</span><div class="usp-txt"><strong>Okružen Šumom</strong><span>Mir i privatnost na Fruškoj Gori</span></div></div>
-  <div class="usp-pill"><span class="usp-icon">🧖</span><div class="usp-txt"><strong>Spa Centar</strong><span>Sauna za 5 osoba, džakuzi, opuštanje</span></div></div>
-  <div class="usp-pill"><span class="usp-icon">🚗</span><div class="usp-txt"><strong>25 min od Novog Sada</strong><span>45 min od Beograda — lako dostupno</span></div></div>
-  <div class="usp-pill"><span class="usp-icon">📅</span><div class="usp-txt"><strong>Min. 2 Noćenja</strong><span>Cena po dogovoru i periodu</span></div></div>
+  <div class="usp-pill"><span class="usp-icon">&#128106;</span><div class="usp-txt"><strong>Do 12 Gostiju</strong><span>Idealno za porodice i dru&#353;tva</span></div></div>
+  <div class="usp-pill"><span class="usp-icon">&#127794;</span><div class="usp-txt"><strong>Okru&#382;en &#352;umom</strong><span>Mir i privatnost na Fru&#353;koj Gori</span></div></div>
+  <div class="usp-pill"><span class="usp-icon">&#129718;</span><div class="usp-txt"><strong>Spa Centar</strong><span>Sauna za 5 osoba, d&#382;akuzi, opu&#353;tanje</span></div></div>
+  <div class="usp-pill"><span class="usp-icon">&#128663;</span><div class="usp-txt"><strong>25 min od Novog Sada</strong><span>45 min od Beograda &mdash; lako dostupno</span></div></div>
+  <div class="usp-pill"><span class="usp-icon">&#128197;</span><div class="usp-txt"><strong>Min. 2 No&#263;enja</strong><span>Cena po dogovoru i periodu</span></div></div>
 </div>
 
-<!-- ABOUT / FEATURES -->
+<!-- ABOUT -->
 <section class="about" id="about">
   <div class="about-inner">
     <p class="lbl-gold">O Vili</p>
-    <h2 class="ttl-dark">Vaš <em>Dom</em> na Fruškoj Gori</h2>
-    <p class="sub-txt">Vila Kraljev Breg je savršeno mesto za odmor i druženje — prostrana, udobna, okružena šumom i daleko od gradske buke.</p>
+    <h2 class="ttl-dark">Va&#353; <em>Dom</em> na Fru&#353;koj Gori</h2>
+    <p class="sub-txt">Vila Kraljev Breg je savr&#353;eno mesto za odmor i dru&#382;enje &mdash; prostrana, udobna, okru&#382;ena &#353;umom i daleko od gradske buke.</p>
     <div class="about-grid">
-      <div class="about-card"><span class="ac-icon">🛏️</span><p class="ac-name">4 Spavaće Sobe</p><p class="ac-desc">Četiri spavaće sobe plus biblioteka sa mono ležajem — komforan smeštaj za do 12 odraslih.</p></div>
-      <div class="about-card"><span class="ac-icon">🛋️</span><p class="ac-name">Prostrana Dnevna Soba</p><p class="ac-desc">Velika dnevna soba sa kuhinjom i trosednom garniturom na razvlačenje za opuštena sijela.</p></div>
-      <div class="about-card"><span class="ac-icon">🚿</span><p class="ac-name">2 Kupatila</p><p class="ac-desc">Dva kupatila sa tuširanim kabinama — sve što treba za udoban boravak cele grupe.</p></div>
-      <div class="about-card"><span class="ac-icon">🧖</span><p class="ac-name">Spa Centar</p><p class="ac-desc">Odvojen spa centar sa saunom za 5 osoba — dva termina dnevno za pravo iskustvo opuštanja.</p></div>
-      <div class="about-card"><span class="ac-icon">🏡</span><p class="ac-name">Zastakljena Terasa 40m²</p><p class="ac-desc">Panoramska ostakljena terasa pogodna i za zimski boravak — idealna za kišne dane i hladne večeri.</p></div>
-      <div class="about-card"><span class="ac-icon">🏊</span><p class="ac-name">Veliki Bazen</p><p class="ac-desc">Bazen sa plažom, ležaljkama i suncobranima — vaš lični resort u srcu šume.</p></div>
-      <div class="about-card"><span class="ac-icon">🍖</span><p class="ac-name">Roštilje i Kuvanje</p><p class="ac-desc">Zidani roštilj, kotlić, šac i električni ražanj — pravi gurmanski kut na otvorenom vazduhu.</p></div>
-      <div class="about-card"><span class="ac-icon">📶</span><p class="ac-name">WiFi i Parking</p><p class="ac-desc">Brzi bežični internet i privatni parking — sve je tu, nema kompromisa.</p></div>
+      <div class="about-card"><span class="ac-icon">&#127). &#128)</span><p class="ac-name">4 Spava&#263;e Sobe</p><p class="ac-desc">&#268;etiri spava&#263;e sobe plus biblioteka sa mono le&#382;ajem &mdash; komforan sme&#353;taj za do 12 odraslih.</p></div>
+      <div class="about-card"><span class="ac-icon">&#128)</span><p class="ac-name">Prostrana Dnevna Soba</p><p class="ac-desc">Velika dnevna soba sa kuhinjom i trosednom garniturom na razvla&#269;enje za opu&#353;tena sijela.</p></div>
+      <div class="about-card"><span class="ac-icon">&#128703;</span><p class="ac-name">2 Kupatila</p><p class="ac-desc">Dva kupatila sa tu&#353;iranim kabinama &mdash; sve &#353;to treba za udoban boravak cele grupe.</p></div>
+      <div class="about-card"><span class="ac-icon">&#129718;</span><p class="ac-name">Spa Centar</p><p class="ac-desc">Odvojen spa centar sa saunom za 5 osoba &mdash; dva termina dnevno za pravo iskustvo opu&#353;tanja.</p></div>
+      <div class="about-card"><span class="ac-icon">&#127) &#127861;</span><p class="ac-name">Zastakljena Terasa 40m&#178;</p><p class="ac-desc">Panoramska ostakljena terasa pogodna i za zimski boravak &mdash; idealna za ki&#353;ne dane i hladne ve&#269;eri.</p></div>
+      <div class="about-card"><span class="ac-icon">&#127946;</span><p class="ac-name">Veliki Bazen</p><p class="ac-desc">Bazen sa pla&#382;om, le&#382;aljkama i suncobranima &mdash; va&#353; li&#269;ni resort u srcu &#353;ume.</p></div>
+      <div class="about-card"><span class="ac-icon">&#127) &#127370;</span><p class="ac-name">Ro&#353;tilj i Kuvanje</p><p class="ac-desc">Zidani ro&#353;tilj, kotli&#263;, &#353;ac i elektri&#269;ni ra&#382;anj &mdash; pravi gurmanski kut na otvorenom vazduhu.</p></div>
+      <div class="about-card"><span class="ac-icon">&#128246;</span><p class="ac-name">WiFi i Parking</p><p class="ac-desc">Brzi be&#382;i&#269;ni internet i privatni parking &mdash; sve je tu, nema kompromisa.</p></div>
     </div>
   </div>
 </section>
@@ -672,25 +387,25 @@ footer{background:#0a0f09;padding:32px 52px;display:flex;justify-content:space-b
 <section class="amenities" id="amenities">
   <div class="am-inner">
     <div>
-      <p class="lbl-gold">Sadržaj i Zabava</p>
+      <p class="lbl-gold">Sadr&#382;aj i Zabava</p>
       <h2 class="ttl-light">Za Svaki <em>Ukus</em></h2>
       <div class="divider"></div>
-      <p class="am-desc">Nema dosade u Vili Kraljev Breg. Od aktivnih igara do opuštajućih doživljaja — sve je na jednom mestu, okruženo tišinom Fruške Gore.</p>
-      <p class="am-desc">Odlično za porodice sa decom, prijatelje, timove, proslavice i sve koji žele da se izmaknu gradskom tempu. Kapacitet do <strong>12 odraslih osoba.</strong></p>
+      <p class="am-desc">Nema dosade u Vili Kraljev Breg. Od aktivnih igara do opu&#353;taju&#263;ih do&#382;ivljaja &mdash; sve je na jednom mestu, okru&#382;eno ti&#353;inom Fru&#353;ke Gore.</p>
+      <p class="am-desc">Odli&#269;no za porodice sa decom, prijatelje, timove, proslavice i sve koji &#382;ele da se izmaknu gradskom tempu. Kapacitet do <strong>12 odraslih osoba.</strong></p>
       <div class="am-highlight">
         <span class="am-num">12</span>
         <div class="am-num-txt"><strong>Odraslih Osoba</strong>Maksimalni kapacitet</div>
       </div>
     </div>
     <div class="am-grid">
-      <div class="am-card"><span class="am-card-icon">🎾</span><p class="am-card-name">Padel Teren</p><p class="am-card-desc">Padel po dogovoru — sport koji osvaja sve uzraste.</p></div>
-      <div class="am-card"><span class="am-card-icon">🎮</span><p class="am-card-name">PlayStation 5</p><p class="am-card-desc">Sony PS5 sa kolekcijom igara za kišne dane i večernje turnire.</p></div>
-      <div class="am-card"><span class="am-card-icon">🎱</span><p class="am-card-name">Bilijar</p><p class="am-card-desc">Punomerni bilijar sto — mačevi za čast i titulu kućnog šampiona.</p></div>
-      <div class="am-card"><span class="am-card-icon">⚽</span><p class="am-card-name">Stoni Fudbal</p><p class="am-card-desc">Klasični stoni fudbal i vazdušni hokej za brzu dozu adrenalin.</p></div>
-      <div class="am-card"><span class="am-card-icon">🧒</span><p class="am-card-name">Dečje Igralište</p><p class="am-card-desc">Veliko ograđeno dečje igralište na otvorenom — bezbedno i uzbudljivo.</p></div>
-      <div class="am-card"><span class="am-card-icon">🥅</span><p class="am-card-name">Mini Fudbal</p><p class="am-card-desc">Mini fudbal teren za ozbiljne i manje ozbiljne navijače.</p></div>
-      <div class="am-card"><span class="am-card-icon">🔥</span><p class="am-card-name">Kotlić i Šac</p><p class="am-card-desc">Autentična srpska trpeza — paprikaš u kotliću ili pita ispod šaca.</p></div>
-      <div class="am-card"><span class="am-card-icon">🌄</span><p class="am-card-name">Dvorište i Kutci</p><p class="am-card-desc">Više odvojenih kutaka u velikom dvorištu — svako nađe svoj omiljeni ugao.</p></div>
+      <div class="am-card"><span class="am-card-icon">&#127) &#127ternary;</span><p class="am-card-name">Padel Teren</p><p class="am-card-desc">Padel po dogovoru &mdash; sport koji osvaja sve uzraste.</p></div>
+      <div class="am-card"><span class="am-card-icon">&#127) &#127ternary;</span><p class="am-card-name">PlayStation 5</p><p class="am-card-desc">Sony PS5 sa kolekcijom igara za ki&#353;ne dane i ve&#269;ernje turnire.</p></div>
+      <div class="am-card"><span class="am-card-icon">&#127) &#128;</span><p class="am-card-name">Bilijar</p><p class="am-card-desc">Punomerni bilijar sto &mdash; me&#269;evi za &#269;ast i titulu ku&#263;nog &#353;ampiona.</p></div>
+      <div class="am-card"><span class="am-card-icon">&#9917;</span><p class="am-card-name">Stoni Fudbal</p><p class="am-card-desc">Klasi&#269;ni stoni fudbal i vazdu&#353;ni hokej za brzu dozu adrenalina.</p></div>
+      <div class="am-card"><span class="am-card-icon">&#128) &#128;</span><p class="am-card-name">De&#269;je Igrali&#353;te</p><p class="am-card-desc">Veliko ogra&#273;eno de&#269;je igrali&#353;te na otvorenom &mdash; bezbedno i uzbudljivo.</p></div>
+      <div class="am-card"><span class="am-card-icon">&#127; &#9917;</span><p class="am-card-name">Mini Fudbal</p><p class="am-card-desc">Mini fudbal teren za ozbiljne i manje ozbiljne navi ja&#269;e.</p></div>
+      <div class="am-card"><span class="am-card-icon">&#128293;</span><p class="am-card-name">Kotli&#263; i &#352;ac</p><p class="am-card-desc">Autenti&#269;na srpska trpeza &mdash; paprika&#353; u kotli&#263;u ili pita ispod &#353;aca.</p></div>
+      <div class="am-card"><span class="am-card-icon">&#127) &#127304;</span><p class="am-card-name">Dvori&#353;te i Kutci</p><p class="am-card-desc">Vi&#353;e odvojenih kutaka u velikom dvori&#353;tu &mdash; svako na&#273;e svoj omiljeni ugao.</p></div>
     </div>
   </div>
 </section>
@@ -701,65 +416,65 @@ footer{background:#0a0f09;padding:32px 52px;display:flex;justify-content:space-b
     <p class="lbl-gold" style="color:var(--bark);">Galerija</p>
     <h2 class="ttl-dark">Prizori <em>Kraljevog Brega</em></h2>
     <div class="photo-grid" id="photo-grid">
-      <div class="pc pc-wide" data-idx="0"><img src="20260404_124254.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
-      <div class="pc" data-idx="1"><img src="20260404_124535.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
-      <div class="pc pc-tall" data-idx="2"><img src="IMG-29c12566ca9d5765702d90e5674a78ae-V.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
-      <div class="pc" data-idx="3"><img src="20260404_124739.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
-      <div class="pc" data-idx="4"><img src="20260404_124811.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
-      <div class="pc pc-wide" data-idx="5"><img src="20260404_124826.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
-      <div class="pc pc-tall" data-idx="6"><img src="IMG-7970e0fa69faee1dafc41011f364adc6-V.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
-      <div class="pc" data-idx="7"><img src="20260404_124830.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
-      <div class="pc" data-idx="8"><img src="20260404_124840.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
-      <div class="pc pc-wide" data-idx="9"><img src="IMG-71518eebf2a630e8c9e87552770b6e57-V.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
-      <div class="pc" data-idx="10"><img src="IMG-a4dbea14f1bb87f7eabcfc6931076f80-V.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
-      <div class="pc pc-tall" data-idx="11"><img src="IMG-b8adac7063aad03d3ac0e12543ec562b-V (1).jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
-      <div class="pc" data-idx="12"><img src="IMG-c9abc71a7d87c08da1b5fff39a977e89-V.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
-      <div class="pc" data-idx="13"><img src="IMG-f858ca43e16602f99297f6f04f2c638c-V.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
-      <div class="pc pc-wide" data-idx="14"><img src="IMG-fd5233840ce7d2813bda725ea6643823-V.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
-      <div class="pc" data-idx="15"><img src="IMG-6052eb2699cab02ef30d2c1fed21cd29-V.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
-      <div class="pc" data-idx="16"><img src="IMG-29c12566ca9d5765702d90e5674a78ae-V (1).jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
+      <div class="pc pc-wide" data-src="20260404_124254.jpg"><img src="20260404_124254.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
+      <div class="pc" data-src="20260404_124535.jpg"><img src="20260404_124535.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
+      <div class="pc pc-tall" data-src="IMG-29c12566ca9d5765702d90e5674a78ae-V.jpg"><img src="IMG-29c12566ca9d5765702d90e5674a78ae-V.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
+      <div class="pc" data-src="20260404_124739.jpg"><img src="20260404_124739.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
+      <div class="pc" data-src="20260404_124811.jpg"><img src="20260404_124811.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
+      <div class="pc pc-wide" data-src="20260404_124826.jpg"><img src="20260404_124826.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
+      <div class="pc pc-tall" data-src="IMG-7970e0fa69faee1dafc41011f364adc6-V.jpg"><img src="IMG-7970e0fa69faee1dafc41011f364adc6-V.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
+      <div class="pc" data-src="20260404_124830.jpg"><img src="20260404_124830.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
+      <div class="pc" data-src="20260404_124840.jpg"><img src="20260404_124840.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
+      <div class="pc pc-wide" data-src="IMG-71518eebf2a630e8c9e87552770b6e57-V.jpg"><img src="IMG-71518eebf2a630e8c9e87552770b6e57-V.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
+      <div class="pc" data-src="IMG-a4dbea14f1bb87f7eabcfc6931076f80-V.jpg"><img src="IMG-a4dbea14f1bb87f7eabcfc6931076f80-V.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
+      <div class="pc pc-tall" data-src="IMG-b8adac7063aad03d3ac0e12543ec562b-V (1).jpg"><img src="IMG-b8adac7063aad03d3ac0e12543ec562b-V (1).jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
+      <div class="pc" data-src="IMG-c9abc71a7d87c08da1b5fff39a977e89-V.jpg"><img src="IMG-c9abc71a7d87c08da1b5fff39a977e89-V.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
+      <div class="pc" data-src="IMG-f858ca43e16602f99297f6f04f2c638c-V.jpg"><img src="IMG-f858ca43e16602f99297f6f04f2c638c-V.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
+      <div class="pc pc-wide" data-src="IMG-fd5233840ce7d2813bda725ea6643823-V.jpg"><img src="IMG-fd5233840ce7d2813bda725ea6643823-V.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
+      <div class="pc" data-src="IMG-6052eb2699cab02ef30d2c1fed21cd29-V.jpg"><img src="IMG-6052eb2699cab02ef30d2c1fed21cd29-V.jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
+      <div class="pc" data-src="IMG-29c12566ca9d5765702d90e5674a78ae-V (1).jpg"><img src="IMG-29c12566ca9d5765702d90e5674a78ae-V (1).jpg" alt="Vila Kraljev Breg"><div class="pc-zoom"></div></div>
     </div>
   </div>
 </section>
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
-  <button class="lb-close" id="lb-close">✕</button>
-  <button class="lb-prev" id="lb-prev">‹</button>
+  <button class="lb-close" id="lb-close">&#10005;</button>
+  <button class="lb-prev" id="lb-prev">&#8249;</button>
   <div class="lb-img-wrap">
-    <img id="lb-img" src="" alt="">
+    <img id="lb-img" src="" alt="Vila Kraljev Breg">
   </div>
-  <button class="lb-next" id="lb-next">›</button>
+  <button class="lb-next" id="lb-next">&#8250;</button>
   <span class="lb-counter" id="lb-counter"></span>
 </div>
 
 <!-- ACTIVITIES -->
 <section class="activities" id="activities">
   <div class="act-inner">
-    <p class="lbl-gold">Šta Raditi</p>
-    <h2 class="ttl-light">Život u <em>Šumi</em></h2>
+    <p class="lbl-gold">&#352;ta Raditi</p>
+    <h2 class="ttl-light">&#381;ivot u <em>&#352;umi</em></h2>
     <div class="act-grid">
-      <div class="act-item"><span class="act-emoji">🥾</span><p class="act-name">Planinarenje</p><p class="act-desc">Staze Fruške Gore su na pragu — od laganih šetnji do ozbiljnih pohoda.</p></div>
-      <div class="act-item"><span class="act-emoji">🚴</span><p class="act-name">Biciklizam</p><p class="act-desc">Bogata mreža biciklističkih staza kroz vinogradski predeo i manastire.</p></div>
-      <div class="act-item"><span class="act-emoji">🍷</span><p class="act-name">Vinarije i Manastiri</p><p class="act-desc">Sremski Karlovci, Čortanovci i frugoška manastirska ruta — samo 10 minuta.</p></div>
-      <div class="act-item"><span class="act-emoji">🌊</span><p class="act-name">Bazen i Opuštanje</p><p class="act-desc">Lenje sate u bazenu, ležaljkama ili džakuziju dok šuma šapuće unaokolo.</p></div>
+      <div class="act-item"><span class="act-emoji">&#129509;</span><p class="act-name">Planinarenje</p><p class="act-desc">Staze Fru&#353;ke Gore su na pragu &mdash; od laganih &#353;etnji do ozbiljnih pohoda.</p></div>
+      <div class="act-item"><span class="act-emoji">&#128692;</span><p class="act-name">Biciklizam</p><p class="act-desc">Bogata mre&#382;a biciklisti&#269;kih staza kroz vinogradski predeo i manastire.</p></div>
+      <div class="act-item"><span class="act-emoji">&#127) &#127862;</span><p class="act-name">Vinarije i Manastiri</p><p class="act-desc">Sremski Karlovci, &#268;ortanovci i fru&#353;ka manastirska ruta &mdash; samo 10 minuta.</p></div>
+      <div class="act-item"><span class="act-emoji">&#127946;</span><p class="act-name">Bazen i Opu&#353;tanje</p><p class="act-desc">Lenje sate u bazenu, le&#382;aljkama ili d&#382;akuziju dok &#353;uma &#353;apu&#263;e unaokolo.</p></div>
     </div>
   </div>
 </section>
 
 <!-- NEARBY -->
-<section class="nearby">
+<section class="nearby" id="nearby">
   <div class="nearby-inner">
-    <p class="lbl-gold" style="color:var(--bark);">Okruženje</p>
+    <p class="lbl-gold" style="color:var(--bark);">Okru&#382;enje</p>
     <h2 class="ttl-dark">Blizu <em>Svega</em></h2>
-    <p class="nearby-body">U mirnom delu Banstola, u blizini najlepših tačaka Fruške Gore — a opet dovoljno blizu civilizacije kad zatreba.</p>
+    <p class="nearby-body">U mirnom delu Banstola, u blizini najlep&#353;ih ta&#269;aka Fru&#353;ke Gore &mdash; a opet dovoljno blizu civilizacije kad zatreba.</p>
     <div class="nearby-grid">
-      <div class="ni"><span class="ni-icon">🏙️</span><p class="ni-name">Novi Sad</p><p class="ni-dist">25 min</p></div>
-      <div class="ni"><span class="ni-icon">🌆</span><p class="ni-name">Beograd</p><p class="ni-dist">45 min</p></div>
-      <div class="ni"><span class="ni-icon">⛪</span><p class="ni-name">Ruska Crkva</p><p class="ni-dist">U blizini</p></div>
-      <div class="ni"><span class="ni-icon">🍷</span><p class="ni-name">Sremski Karlovci</p><p class="ni-dist">U blizini</p></div>
-      <div class="ni"><span class="ni-icon">🌊</span><p class="ni-name">Čortanovci</p><p class="ni-dist">U blizini</p></div>
-      <div class="ni"><span class="ni-icon">🏭</span><p class="ni-name">Inđija</p><p class="ni-dist">U blizini</p></div>
+      <div class="ni"><span class="ni-icon">&#127) &#127970;</span><p class="ni-name">Novi Sad</p><p class="ni-dist">25 min</p></div>
+      <div class="ni"><span class="ni-icon">&#127) &#127961;</span><p class="ni-name">Beograd</p><p class="ni-dist">45 min</p></div>
+      <div class="ni"><span class="ni-icon">&#9962;</span><p class="ni-name">Ruska Crkva</p><p class="ni-dist">U blizini</p></div>
+      <div class="ni"><span class="ni-icon">&#127) &#127862;</span><p class="ni-name">Sremski Karlovci</p><p class="ni-dist">U blizini</p></div>
+      <div class="ni"><span class="ni-icon">&#127) &#127754;</span><p class="ni-name">&#268;ortanovci</p><p class="ni-dist">U blizini</p></div>
+      <div class="ni"><span class="ni-icon">&#127) &#127970;</span><p class="ni-name">In&#273;ija</p><p class="ni-dist">U blizini</p></div>
     </div>
   </div>
 </section>
@@ -770,9 +485,9 @@ footer{background:#0a0f09;padding:32px 52px;display:flex;justify-content:space-b
     <p class="lbl-gold" style="color:var(--bark);">Utisci</p>
     <h2 class="ttl-dark">Glasovi <em>Gostiju</em></h2>
     <div class="rev-grid">
-      <div class="rev-card"><span class="rev-q">"</span><p class="rev-txt">Bajkovito mesto. Tišina, šuma, udobnost — sve na jednom mestu. Deca su se izvrsno provela, a mi odrasli konačno odahnuli. Vraćamo se svakako!</p><p class="rev-stars">★★★★★</p><p class="rev-author">— Porodica iz Novog Sada</p></div>
-      <div class="rev-card"><span class="rev-q">"</span><p class="rev-txt">Sauna, bazen, bilijar, roštilj — nismo imali razloga da idemo van. Vila je prostrana, čista, potpuno opremljena. Organizovali smo proslav za 10 ljudi i bilo je savršeno.</p><p class="rev-stars">★★★★★</p><p class="rev-author">— Ekipa iz Beograda</p></div>
-      <div class="rev-card"><span class="rev-q">"</span><p class="rev-txt">Domaćinstvo kakvo treba — sve je tu, sve radi, sve je čisto. Terasa je fenomenalna čak i kad pada kiša. Fruška Gora sa ovim vilo nema premca.</p><p class="rev-stars">★★★★★</p><p class="rev-author">— Par iz Srbije</p></div>
+      <div class="rev-card"><span class="rev-q">&ldquo;</span><p class="rev-txt">Bajkovito mesto. Ti&#353;ina, &#353;uma, udobnost &mdash; sve na jednom mestu. Deca su se izvrsno provela, a mi odrasli kona&#269;no odahnuli. Vra&#263;amo se svakako!</p><p class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p><p class="rev-author">&mdash; Porodica iz Novog Sada</p></div>
+      <div class="rev-card"><span class="rev-q">&ldquo;</span><p class="rev-txt">Sauna, bazen, bilijar, ro&#353;tilj &mdash; nismo imali razloga da idemo van. Vila je prostrana, &#269;ista, potpuno opremljena. Organizovali smo proslavu za 10 ljudi i bilo je savr&#353;eno.</p><p class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p><p class="rev-author">&mdash; Ekipa iz Beograda</p></div>
+      <div class="rev-card"><span class="rev-q">&ldquo;</span><p class="rev-txt">Doma&#263;instvo kakvo treba &mdash; sve je tu, sve radi, sve je &#269;isto. Terasa je fenomenalna &#269;ak i kad pada ki&#353;a. Fru&#353;ka Gora sa ovom vilom nema premca.</p><p class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p><p class="rev-author">&mdash; Par iz Srbije</p></div>
     </div>
   </div>
 </section>
@@ -784,20 +499,19 @@ footer{background:#0a0f09;padding:32px 52px;display:flex;justify-content:space-b
       <p class="lbl-gold">Rezervacija</p>
       <h2 class="ttl-light">Izaberite <em>Termin</em></h2>
       <div class="divider"></div>
-      <p class="res-info-desc">Pošaljite zahtev za rezervaciju — proveravamo dostupnost i javljamo se u roku od 24h sa potvrdom i detaljima plaćanja.</p>
+      <p class="res-info-desc">Po&#353;aljite zahtev za rezervaciju &mdash; proveravamo dostupnost i javljamo se u roku od 24h sa potvrdom i detaljima pla&#263;anja.</p>
       <ul class="res-bullets">
-        <li class="res-bullet"><div class="res-bullet-chk">✓</div><div class="res-bullet-txt"><strong>Minimalan boravak: 2 noćenja</strong>Minimum dve noći za potpuno iskustvo Královog Brega.</div></li>
-        <li class="res-bullet"><div class="res-bullet-chk">✓</div><div class="res-bullet-txt"><strong>Kapacitet do 12 odraslih</strong>Idealno za veće grupe, porodice i timska putovanja.</div></li>
-        <li class="res-bullet"><div class="res-bullet-chk">✓</div><div class="res-bullet-txt"><strong>Cena zavisi od termina i broja gostiju</strong>Potvrdićemo cenu nakon prijema zahteva.</div></li>
-        <li class="res-bullet"><div class="res-bullet-chk">✓</div><div class="res-bullet-txt"><strong>Brza potvrda na vaš imejl</strong>Odgovaramo u roku od 24h sa svim detaljima.</div></li>
-        <li class="res-bullet"><div class="res-bullet-chk">✓</div><div class="res-bullet-txt"><strong>Kontakt direktno</strong>Možete nas i pozvati ili pisati na WhatsApp za brži odgovor.</div></li>
+        <li class="res-bullet"><div class="res-bullet-chk">&#10003;</div><div class="res-bullet-txt"><strong>Minimalan boravak: 2 no&#263;enja</strong>Minimum dve no&#263;i za potpuno iskustvo Kraljevog Brega.</div></li>
+        <li class="res-bullet"><div class="res-bullet-chk">&#10003;</div><div class="res-bullet-txt"><strong>Kapacitet do 12 odraslih</strong>Idealno za ve&#263;e grupe, porodice i timska putovanja.</div></li>
+        <li class="res-bullet"><div class="res-bullet-chk">&#10003;</div><div class="res-bullet-txt"><strong>Cena zavisi od termina i broja gostiju</strong>Potvrdićemo cenu nakon prijema zahteva.</div></li>
+        <li class="res-bullet"><div class="res-bullet-chk">&#10003;</div><div class="res-bullet-txt"><strong>Brza potvrda na va&#353; imejl</strong>Odgovaramo u roku od 24h sa svim detaljima.</div></li>
+        <li class="res-bullet"><div class="res-bullet-chk">&#10003;</div><div class="res-bullet-txt"><strong>Kontakt direktno</strong>Mo&#382;ete nas i pozvati ili pisati na WhatsApp za br&#382;i odgovor.</div></li>
       </ul>
     </div>
     <div class="cal-box">
       <h3>Zahtev za <em>Rezervaciju</em></h3>
-      <p>Odaberite datume i popunite formular — potvrda stiže na vaš imejl.</p>
+      <p>Odaberite datume i popunite formular &mdash; potvrda sti&#382;e na va&#353; imejl.</p>
       <div id="res-form-wrap">
-        <!-- Calendar -->
         <div class="cal-widget">
           <div class="cal-nav">
             <button class="cal-arrow" id="cal-prev">&#8249;</button>
@@ -806,7 +520,7 @@ footer{background:#0a0f09;padding:32px 52px;display:flex;justify-content:space-b
           </div>
           <div class="cal-days-hdr">
             <div class="cal-day-hdr">Ned</div><div class="cal-day-hdr">Pon</div><div class="cal-day-hdr">Uto</div>
-            <div class="cal-day-hdr">Sre</div><div class="cal-day-hdr">Čet</div><div class="cal-day-hdr">Pet</div>
+            <div class="cal-day-hdr">Sre</div><div class="cal-day-hdr">&#268;et</div><div class="cal-day-hdr">Pet</div>
             <div class="cal-day-hdr">Sub</div>
           </div>
           <div class="cal-days" id="cal-days"></div>
@@ -815,11 +529,10 @@ footer{background:#0a0f09;padding:32px 52px;display:flex;justify-content:space-b
           <div class="date-chip"><span class="date-chip-lbl">Dolazak</span><span class="date-chip-val" id="chip-checkin">Odaberite datum</span></div>
           <div class="date-chip"><span class="date-chip-lbl">Odlazak</span><span class="date-chip-val" id="chip-checkout">Odaberite datum</span></div>
         </div>
-        <!-- Form -->
         <div class="form-row">
           <div class="form-field">
             <label>Ime i Prezime *</label>
-            <input type="text" id="f-name" placeholder="Vaše ime" required>
+            <input type="text" id="f-name" placeholder="Vase ime" required>
           </div>
           <div class="form-field">
             <label>Broj Gostiju *</label>
@@ -832,8 +545,8 @@ footer{background:#0a0f09;padding:32px 52px;display:flex;justify-content:space-b
           </div>
         </div>
         <div class="form-field">
-          <label>Vaš Imejl * (za potvrdu)</label>
-          <input type="email" id="f-email" placeholder="vaša@email.com" required>
+          <label>Vas Imejl * (za potvrdu)</label>
+          <input type="email" id="f-email" placeholder="vasa@email.com" required>
         </div>
         <div class="form-field">
           <label>Telefon (opciono)</label>
@@ -841,15 +554,15 @@ footer{background:#0a0f09;padding:32px 52px;display:flex;justify-content:space-b
         </div>
         <div class="form-field">
           <label>Napomena</label>
-          <textarea id="f-note" placeholder="Posebne želje, pitanja, povod..."></textarea>
+          <textarea id="f-note" placeholder="Posebne zelje, pitanja, povod..."></textarea>
         </div>
-        <button class="btn-reserve" id="submit-btn" onclick="submitReservation()">🍀 Pošaljite Zahtev</button>
-        <p class="form-note">* Potvrda i detalji plaćanja stižu na vaš imejl u roku od 24h.</p>
+        <button class="btn-reserve" id="submit-btn" onclick="submitReservation()">&#127808; Posaljite Zahtev</button>
+        <p class="form-note">* Potvrda i detalji placanja stizu na vas imejl u roku od 24h.</p>
       </div>
       <div class="form-success" id="form-success">
-        <span class="success-icon">🍀</span>
+        <span class="success-icon">&#127808;</span>
         <h4>Zahtev Primljen!</h4>
-        <p>Hvala <span id="success-name"></span>! Vaš zahtev za rezervaciju je primljen. Proveravamo dostupnost i javljamo vam se na <strong><span id="success-email"></span></strong> u roku od 24 sata.<br><br>Vila Kraljev Breg vas čeka! 🌲</p>
+        <p>Hvala <span id="success-name"></span>! Vas zahtev za rezervaciju je primljen. Proveravamo dostupnost i javljamo vam se na <strong><span id="success-email"></span></strong> u roku od 24 sata.<br><br>Vila Kraljev Breg vas ceka!</p>
       </div>
     </div>
   </div>
@@ -860,18 +573,18 @@ footer{background:#0a0f09;padding:32px 52px;display:flex;justify-content:space-b
   <div class="map-inner">
     <div>
       <p class="lbl-gold">Lokacija</p>
-      <h2 class="ttl-light" style="margin-bottom:18px;">Pronađite <em>Nas</em></h2>
-      <p class="map-desc">Vila se nalazi u Banstolu, u mirnom delu Fruške Gore — lako dostupna automobilom iz Novog Sada, Beograda i celog regiona.</p>
+      <h2 class="ttl-light" style="margin-bottom:18px;">Pronadjite <em>Nas</em></h2>
+      <p class="map-desc">Vila se nalazi u Banstolu, u mirnom delu Fruske Gore &mdash; lako dostupna automobilom iz Novog Sada, Beograda i celog regiona.</p>
       <div class="map-addr">
         <strong>Adresa</strong>
-        Banstol, Fruška Gora<br>
+        Banstol, Fruska Gora<br>
         Novi Sad, Vojvodina, Srbija<br>
-        <span style="color:var(--sage);font-size:0.88rem;">Tačna adresa se šalje uz potvrdu rezervacije</span>
+        <span style="color:var(--sage);font-size:0.88rem;">Tacna adresa se salje uz potvrdu rezervacije</span>
       </div>
-      <a href="https://maps.app.goo.gl/" target="_blank" class="btn-dir">🗺 Otvori u Google Maps</a>
+      <a href="https://maps.app.goo.gl/" target="_blank" class="btn-dir">&#128506; Otvori u Google Maps</a>
     </div>
     <div class="map-embed">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23420!2d19.982!3d45.197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475b1059cfe001f1%3A0x2!2sBanstol%2C+Serbia!5e0!3m2!1ssr!2srs!4v1620000000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Vila Kraljev Breg — Lokacija"></iframe>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23420!2d19.982!3d45.197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475b1059cfe001f1%3A0x2!2sBanstol%2C+Serbia!5e0!3m2!1ssr!2srs!4v1620000000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Vila Kraljev Breg"></iframe>
     </div>
   </div>
 </section>
@@ -881,46 +594,56 @@ footer{background:#0a0f09;padding:32px 52px;display:flex;justify-content:space-b
   <div class="contact-inner">
     <div>
       <p class="lbl-gold">Kontakt</p>
-      <h2 class="ttl-light" style="margin-bottom:18px;">Dođite <em>Kod Nas</em></h2>
-      <p class="contact-body">Rezervišite putem formulara ili nas direktno kontaktirajte — radujemo se svakom gostu.</p>
+      <h2 class="ttl-light" style="margin-bottom:18px;">Dodjite <em>Kod Nas</em></h2>
+      <p class="contact-body">Rezervisite putem formulara ili nas direktno kontaktirajte &mdash; radujemo se svakom gostu.</p>
       <ul class="ci-list">
         <li class="ci">
-          <div class="ci-icon">📍</div>
+          <div class="ci-icon">&#128205;</div>
           <div>
             <span class="ci-lbl">Lokacija</span>
-            <span class="ci-val">Banstol, Fruška Gora, Vojvodina, Srbija</span>
+            <span class="ci-val">Banstol, Fruska Gora, Vojvodina, Srbija</span>
           </div>
         </li>
         <li class="ci">
-          <div class="ci-icon">✉️</div>
+          <div class="ci-icon">&#9993;</div>
           <div>
             <span class="ci-lbl">Imejl</span>
-            <span class="ci-val"><a href="/cdn-cgi/l/email-protection#d2a4bbbeb3b9a0b3beb8b7a4b0a0b7b5e0e2e0e392b5bfb3bbbefcb1bdbf"><span class="__cf_email__" data-cfemail="aed8c7c2cfc5dccfc2c4cbd8ccdccbc99c9e9c9feec9c3cfc7c280cdc1c3">[email&#160;protected]</span></a></span>
+            <span class="ci-val"><a href="mailto:vilakraljevbreg2021@gmail.com">vilakraljevbreg2021@gmail.com</a></span>
           </div>
         </li>
         <li class="ci">
-          <div class="ci-icon">🕐</div>
+          <div class="ci-icon">&#128222;</div>
+          <div>
+            <span class="ci-lbl">Telefon / WhatsApp</span>
+            <span class="ci-val"><a href="tel:+381604648565">+381 60 464 8565</a></span>
+            <div class="msg-row">
+              <a href="https://wa.me/381604648565" target="_blank" class="msg-badge">&#128172; WhatsApp</a>
+            </div>
+          </div>
+        </li>
+        <li class="ci">
+          <div class="ci-icon">&#128336;</div>
           <div>
             <span class="ci-lbl">Prijava / Odjava</span>
-            <span class="ci-val">Prijava od 14:00 · Odjava do 11:00</span>
+            <span class="ci-val">Prijava od 14:00 &middot; Odjava do 11:00</span>
           </div>
         </li>
         <li class="ci">
-          <div class="ci-icon">👨‍👩‍👧</div>
+          <div class="ci-icon">&#128106;</div>
           <div>
             <span class="ci-lbl">Gosti</span>
-            <span class="ci-val">Deca svih uzrasta dobrodošla · Do 12 odraslih</span>
+            <span class="ci-val">Deca svih uzrasta dobrodosla &middot; Do 12 odraslih</span>
           </div>
         </li>
       </ul>
     </div>
     <div class="bk-box">
       <h3>Spremi za <em>Odmor?</em></h3>
-      <p>Pošaljite zahtev putem formulara ili nas direktno kontaktirajte. Odgovaramo u roku od 24h.</p>
-      <a href="#reservation" class="btn-bk-forest">📅 Rezervišite Termin</a>
-      <a href="/cdn-cgi/l/email-protection#cabca3a6aba1b8aba6a0afbca8b8afadf8faf8fb8aada7aba3a6e4a9a5a7" class="btn-bk-gold">✉️ Pišite Nam Imejl</a>
-      <a href="https://wa.me/381604648565" target="_blank" class="btn-bk-ghost">💬 WhatsApp</a>
-      <p class="bk-note">Minimum 2 noćenja · Kućni ljubimci po dogovoru · Cena zavisi od termina</p>
+      <p>Posaljite zahtev putem formulara ili nas direktno kontaktirajte. Odgovaramo u roku od 24h.</p>
+      <a href="#reservation" class="btn-bk-forest">&#128197; Rezervisite Termin</a>
+      <a href="mailto:vilakraljevbreg2021@gmail.com" class="btn-bk-gold">&#9993; Pisite Nam Imejl</a>
+      <a href="https://wa.me/381604648565" target="_blank" class="btn-bk-ghost">&#128172; WhatsApp</a>
+      <p class="bk-note">Minimum 2 nocenja &middot; Kucni ljubimci po dogovoru &middot; Cena zavisi od termina</p>
     </div>
   </div>
 </section>
@@ -932,127 +655,171 @@ footer{background:#0a0f09;padding:32px 52px;display:flex;justify-content:space-b
     <span class="f-logo">VILA KRALJEV BREG</span>
   </div>
   <div class="f-soc">
-    <a href="/cdn-cgi/l/email-protection#85f3ece9e4eef7e4e9efe0f3e7f7e0e2b7b5b7b4c5e2e8e4ece9abe6eae8">Imejl</a>
+    <a href="mailto:vilakraljevbreg2021@gmail.com">Imejl</a>
+    <a href="tel:+381604648565">+381 60 464 8565</a>
   </div>
-  <p class="f-copy">Banstol, Fruška Gora · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0b7d62676a60796a67616e7d69796e6c393b393a4b6c666a626725686466">[email&#160;protected]</a></p>
+  <p class="f-copy">Banstol, Fruska Gora &middot; vilakraljevbreg2021@gmail.com</p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// ── NAV SCROLL ──
-window.addEventListener('scroll',()=>{
-  document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>60);
+<script>
+// NAV SCROLL
+window.addEventListener('scroll', function() {
+  document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 60);
 });
 
-// ── SMOOTH SCROLL ──
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    const t=document.querySelector(a.getAttribute('href'));
-    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+// SMOOTH SCROLL (skip lightbox close link)
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var href = a.getAttribute('href');
+    if (href === '#') return;
+    var t = document.querySelector(href);
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
   });
 });
 
-// ── LIGHTBOX ──
-const photos = [...document.querySelectorAll('.pc')];
-const srcs = photos.map(p=>p.querySelector('img').src);
-let lbIdx=0;
-const lb=document.getElementById('lightbox');
-const lbImg=document.getElementById('lb-img');
-const lbCounter=document.getElementById('lb-counter');
+// LIGHTBOX — reads from data-src to bypass any CDN email/link rewriting
+var photos = Array.from(document.querySelectorAll('#photo-grid .pc'));
+var srcs = photos.map(function(p) { return p.getAttribute('data-src'); });
+var lbIdx = 0;
+var lb = document.getElementById('lightbox');
+var lbImg = document.getElementById('lb-img');
+var lbCounter = document.getElementById('lb-counter');
 
-function openLb(i){
-  lbIdx=i;
-  lbImg.src=srcs[i];
-  lbCounter.textContent=(i+1)+' / '+srcs.length;
+function openLb(i) {
+  lbIdx = i;
+  lbImg.src = srcs[i];
+  lbCounter.textContent = (i + 1) + ' / ' + srcs.length;
   lb.classList.add('open');
-  document.body.style.overflow='hidden';
+  document.body.style.overflow = 'hidden';
 }
-function closeLb(){lb.classList.remove('open');document.body.style.overflow='';}
-function lbGo(dir){
-  lbIdx=(lbIdx+dir+srcs.length)%srcs.length;
-  lbImg.src=srcs[lbIdx];
-  lbCounter.textContent=(lbIdx+1)+' / '+srcs.length;
+function closeLb() {
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+  setTimeout(function(){ lbImg.src = ''; }, 300);
 }
-photos.forEach((p,i)=>p.addEventListener('click',()=>openLb(i)));
-document.getElementById('lb-close').addEventListener('click',closeLb);
-document.getElementById('lb-prev').addEventListener('click',()=>lbGo(-1));
-document.getElementById('lb-next').addEventListener('click',()=>lbGo(1));
-lb.addEventListener('click',e=>{if(e.target===lb)closeLb();});
-document.addEventListener('keydown',e=>{
-  if(!lb.classList.contains('open'))return;
-  if(e.key==='Escape')closeLb();
-  if(e.key==='ArrowLeft')lbGo(-1);
-  if(e.key==='ArrowRight')lbGo(1);
+function lbGo(dir) {
+  lbIdx = (lbIdx + dir + srcs.length) % srcs.length;
+  lbImg.src = srcs[lbIdx];
+  lbCounter.textContent = (lbIdx + 1) + ' / ' + srcs.length;
+}
+
+photos.forEach(function(p, i) {
+  p.addEventListener('click', function() { openLb(i); });
+});
+document.getElementById('lb-close').addEventListener('click', closeLb);
+document.getElementById('lb-prev').addEventListener('click', function() { lbGo(-1); });
+document.getElementById('lb-next').addEventListener('click', function() { lbGo(1); });
+lb.addEventListener('click', function(e) { if (e.target === lb) closeLb(); });
+document.addEventListener('keydown', function(e) {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLb();
+  if (e.key === 'ArrowLeft') lbGo(-1);
+  if (e.key === 'ArrowRight') lbGo(1);
 });
 
-// ── CALENDAR ──
-const monthNames=['Januar','Februar','Mart','April','Maj','Jun','Jul','Avgust','Septembar','Oktobar','November','Decembar'];
-let calYear,calMonth,checkIn=null,checkOut=null,picking='in';
-const today=new Date();
+// CALENDAR
+var monthNames = ['Januar','Februar','Mart','April','Maj','Jun','Jul','Avgust','Septembar','Oktobar','November','Decembar'];
+var calYear, calMonth, checkIn = null, checkOut = null, picking = 'in';
+var today = new Date();
 today.setHours(0,0,0,0);
-calYear=today.getFullYear();calMonth=today.getMonth();
+calYear = today.getFullYear();
+calMonth = today.getMonth();
 
-function fmt(d){if(!d)return'Odaberite datum';return d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();}
-function renderCal(){
-  document.getElementById('cal-month-label').textContent=monthNames[calMonth]+' '+calYear;
-  const grid=document.getElementById('cal-days');
-  grid.innerHTML='';
-  const first=new Date(calYear,calMonth,1);
-  const startDow=first.getDay();
-  const daysInMonth=new Date(calYear,calMonth+1,0).getDate();
-  for(let i=0;i<startDow;i++){const e=document.createElement('div');e.className='cal-day cal-day-empty';grid.appendChild(e);}
-  for(let d=1;d<=daysInMonth;d++){
-    const date=new Date(calYear,calMonth,d);
-    const el=document.createElement('div');
-    el.className='cal-day';
-    el.textContent=d;
-    const isPast=date<today;
-    if(isPast){el.classList.add('cal-day-past');}
-    else{
-      if(date.toDateString()===today.toDateString())el.classList.add('cal-day-today');
-      if(checkIn&&date.toDateString()===checkIn.toDateString())el.classList.add('cal-day-selected');
-      if(checkOut&&date.toDateString()===checkOut.toDateString())el.classList.add('cal-day-selected');
-      if(checkIn&&checkOut&&date>checkIn&&date<checkOut)el.classList.add('cal-day-in-range');
-      el.addEventListener('click',()=>pickDate(date));
+function fmt(d) {
+  if (!d) return 'Odaberite datum';
+  return d.getDate() + '.' + (d.getMonth() + 1) + '.' + d.getFullYear() + '.';
+}
+
+function renderCal() {
+  document.getElementById('cal-month-label').textContent = monthNames[calMonth] + ' ' + calYear;
+  var grid = document.getElementById('cal-days');
+  grid.innerHTML = '';
+  var startDow = new Date(calYear, calMonth, 1).getDay();
+  var daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+  for (var i = 0; i < startDow; i++) {
+    var e = document.createElement('div');
+    e.className = 'cal-day cal-day-empty';
+    grid.appendChild(e);
+  }
+  for (var d = 1; d <= daysInMonth; d++) {
+    var date = new Date(calYear, calMonth, d);
+    var el = document.createElement('div');
+    el.className = 'cal-day';
+    el.textContent = d;
+    if (date < today) {
+      el.classList.add('cal-day-past');
+    } else {
+      if (date.toDateString() === today.toDateString()) el.classList.add('cal-day-today');
+      if (checkIn && date.toDateString() === checkIn.toDateString()) el.classList.add('cal-day-selected');
+      if (checkOut && date.toDateString() === checkOut.toDateString()) el.classList.add('cal-day-selected');
+      if (checkIn && checkOut && date > checkIn && date < checkOut) el.classList.add('cal-day-in-range');
+      (function(dd) {
+        el.addEventListener('click', function() { pickDate(dd); });
+      })(date);
     }
     grid.appendChild(el);
   }
 }
-function pickDate(d){
-  if(picking==='in'){checkIn=d;checkOut=null;picking='out';}
-  else{
-    if(d<=checkIn){checkIn=d;checkOut=null;picking='out';}
-    else{checkOut=d;picking='in';}
+
+function pickDate(d) {
+  if (picking === 'in') {
+    checkIn = d; checkOut = null; picking = 'out';
+  } else {
+    if (d <= checkIn) { checkIn = d; checkOut = null; picking = 'out'; }
+    else { checkOut = d; picking = 'in'; }
   }
-  document.getElementById('chip-checkin').textContent=fmt(checkIn);
-  document.getElementById('chip-checkout').textContent=fmt(checkOut);
+  document.getElementById('chip-checkin').textContent = fmt(checkIn);
+  document.getElementById('chip-checkout').textContent = fmt(checkOut);
   renderCal();
 }
-document.getElementById('cal-prev').addEventListener('click',()=>{calMonth--;if(calMonth<0){calMonth=11;calYear--;}renderCal();});
-document.getElementById('cal-next').addEventListener('click',()=>{calMonth++;if(calMonth>11){calMonth=0;calYear++;}renderCal();});
+
+document.getElementById('cal-prev').addEventListener('click', function() {
+  calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; } renderCal();
+});
+document.getElementById('cal-next').addEventListener('click', function() {
+  calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; } renderCal();
+});
 renderCal();
 
-// ── FORM SUBMIT ──
-function submitReservation(){
-  const name=document.getElementById('f-name').value.trim();
-  const email=document.getElementById('f-email').value.trim();
-  const guests=document.getElementById('f-guests').value;
-  const phone=document.getElementById('f-phone').value.trim();
-  const note=document.getElementById('f-note').value.trim();
-  if(!name){alert('Molimo unesite ime i prezime.');return;}
-  if(!email||!email.includes('@')){alert('Molimo unesite ispravan imejl.');return;}
-  if(!guests){alert('Molimo odaberite broj gostiju.');return;}
-  if(!checkIn||!checkOut){alert('Molimo odaberite datume dolaska i odlaska.');return;}
-  const nights=Math.round((checkOut-checkIn)/(1000*60*60*24));
-  if(nights<2){alert('Minimalan boravak su 2 noćenja. Molimo odaberite odgovarajuće datume.');return;}
+// FORM SUBMIT — mailto built in JS so Cloudflare cannot rewrite it
+function submitReservation() {
+  var name    = document.getElementById('f-name').value.trim();
+  var email   = document.getElementById('f-email').value.trim();
+  var guests  = document.getElementById('f-guests').value;
+  var phone   = document.getElementById('f-phone').value.trim();
+  var note    = document.getElementById('f-note').value.trim();
 
-  const subject=encodeURIComponent('Zahtev za Rezervaciju — Vila Kraljev Breg');
-  const body=encodeURIComponent(
-`Nova rezervacija — Vila Kraljev Breg
+  if (!name)                        { alert('Molimo unesite ime i prezime.'); return; }
+  if (!email || email.indexOf('@') < 0) { alert('Molimo unesite ispravan imejl.'); return; }
+  if (!guests)                      { alert('Molimo odaberite broj gostiju.'); return; }
+  if (!checkIn || !checkOut)        { alert('Molimo odaberite datume dolaska i odlaska.'); return; }
 
-Ime i prezime: ${name}
-Imejl gosta: ${email}
-Telefon: ${phone||'Nije naveden'}
-Broj gostiju: ${guests}
-Dolazak: ${fmt(checkIn)}
-Odlazak: ${fmt(checkOut)}
-Broj noćenja: 
+  var nights = Math.round((checkOut - checkIn) / 86400000);
+  if (nights < 2) { alert('Minimalan boravak su 2 nocenja.'); return; }
+
+  // Build mailto entirely in JS — Cloudflare cannot intercept this
+  var to = ['vilakraljevbreg2021', 'gmail.com'].join('@');
+  var subj = encodeURIComponent('Zahtev za Rezervaciju - Vila Kraljev Breg');
+  var body = encodeURIComponent(
+    'Nova rezervacija - Vila Kraljev Breg\n\n' +
+    'Ime i prezime: ' + name + '\n' +
+    'Imejl gosta: ' + email + '\n' +
+    'Telefon: ' + (phone || 'Nije naveden') + '\n' +
+    'Broj gostiju: ' + guests + '\n' +
+    'Dolazak: ' + fmt(checkIn) + '\n' +
+    'Odlazak: ' + fmt(checkOut) + '\n' +
+    'Broj nocenja: ' + nights + '\n\n' +
+    'Napomena:\n' + (note || 'Bez napomene') + '\n\n' +
+    '---\nZahtev primljen sa web sajta Vila Kraljev Breg.'
+  );
+
+  window.location.href = 'mailto:' + to + '?subject=' + subj + '&body=' + body;
+
+  document.getElementById('success-name').textContent = name;
+  document.getElementById('success-email').textContent = email;
+  document.getElementById('res-form-wrap').style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+}
+</script>
+</body>
+</html>
